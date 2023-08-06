@@ -2,8 +2,8 @@ import React, {useRef, useEffect} from 'react'
 import './header.css'
 
 import {motion} from 'framer-motion'
-import logo from '../../assets/images/eco-logo.png'
-import userIcon from '../../assets/images/user-icon.png'
+import logo from '../../assets/images/simp.jpeg'
+
 
 import {Container, Row} from "reactstrap";
 import { NavLink, useNavigate } from 'react-router-dom';

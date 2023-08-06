@@ -61,9 +61,7 @@ const Home = () => {
                 <h2 className="hero__subtitle">
                   Renllugs Building Resources
                 </h2>
-                <br/>
-                <h3> No. 1 Online Shopping Platform for Building Resources in Nigeria</h3>
-                <br/>
+                <p> No. 1 Online Shopping Platform for Building Resources in Nigeria</p>
                 <p>Experience the pleasure of getting affordable and quality building resources on our platform with fast delivery from the comfort of your home </p>
                   <motion.button whileTap={{scale: 1.2}} className='buy__btn'> <Link to = '/shop'>SHOP NOW</Link></motion.button>
               </div>
