@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Container, Row, Col, Form, FormGroup } from 'reactstrap'
 import {toast} from 'react-toastify'
-
 import {db, storage} from '../firebase.config';
 import { uploadBytesResumable, ref ,getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
@@ -9,50 +8,50 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/add-product.css';
 
 const AddProducts = () => {
-    const [enterTitle, setEnterTitle] = useState('')
-    const [enterShortDesc, setEnterShortDesc] = useState('')
-    const [enterDescription, setEnterDescription] = useState('')
-    const [enterCategory, setEnterCategory] = useState('')
-    const [enterSection, setEnterSection] = useState('')
-    const [enterPrice, setEnterPrice] = useState('')
-    const [enterProductImg, setEnterProductImg] = useState(null);
-    const [loading, setLoading] = useState(false)
+  const [enterTitle, setEnterTitle] = useState('')
+  const [enterShortDesc, setEnterShortDesc] = useState('')
+  const [enterDescription, setEnterDescription] = useState('')
+  const [enterCategory, setEnterCategory] = useState('')
+  const [enterSection, setEnterSection] = useState('')
+  const [enterPrice, setEnterPrice] = useState('')
+  const [enterProductImg, setEnterProductImg] = useState(null);
+  const [loading, setLoading] = useState(false)
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
 
-    const addProduct = async (e) => {
-      e.preventDefault();
-    
-      try {
-        setLoading(true);
-        
-        // Upload image to Firebase Storage
-        const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, enterProductImg);
-    
-        uploadTask.on(
-          'state_changed',
-          null,
-          (error) => {
-            setLoading(false);
-            toast.error('Image upload failed!');
-            console.error(error);
-          },
-          async () => {
-            try {
-              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-    
-              const docRef = await addDoc(collection(db, 'products'), {
-                productName: enterTitle,
-                shortDesc: enterShortDesc,
-                description: enterDescription,
-                category: enterCategory,
-                section: enterSection,
-                price: enterPrice,
-                imgUrl: downloadURL,
+  const addProduct = async (e) => {
+    e.preventDefault();
+  
+    try {
+      setLoading(true);
+      
+      // Upload image to Firebase Storage
+      const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, enterProductImg);
+  
+      uploadTask.on(
+        'state_changed',
+        null,
+        (error) => {
+          setLoading(false);
+          toast.error('Image upload failed!');
+          console.error(error);
+        },
+        async () => {
+          try {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+  
+            await addDoc(collection(db, 'products'), {
+              productName: enterTitle,
+              shortDesc: enterShortDesc,
+              description: enterDescription,
+              category: enterCategory,
+              section: enterSection,
+              price: enterPrice,
+              imgUrl: downloadURL,
 
-              });
+            });
     
               setLoading(false);
               toast.success('Product successfully added!');
