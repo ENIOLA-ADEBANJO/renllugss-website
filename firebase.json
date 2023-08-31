@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "renllugss-website",
     "public": "build",
     "ignore": [
       "firebase.json",
