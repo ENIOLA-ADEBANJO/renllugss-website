@@ -10,7 +10,8 @@ const Shop = () => {
   const { data: productsData, loading } = useGetData('products');
   const [filteredProductsData, setFilteredProductsData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [sortOrder, setSortOrder] = useState('');
+  const [setSortOrder] = useState('');
+
 
   useEffect(() => {
     // Extract categories from productsData

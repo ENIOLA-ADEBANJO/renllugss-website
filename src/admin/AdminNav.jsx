@@ -12,7 +12,6 @@ import { toast } from 'react-toastify';
 import logo from '../assets/images/simp.jpeg';
 
 const admin__nav = [
-
   {
     display: 'Dashboard',
     path: '/dashboard'
@@ -95,11 +94,6 @@ const AdminNav = () => {
 });
 
 const menuToggle =  ()=> menuRef.current.classList.toggle('active__menu');
-
-const navigateToCart = () => {
-  navigate('/cart');
-
-};
 
 const toggleProfileActions = ()=> profileActionRef.current.classList.toggle('show__profileActions')
 

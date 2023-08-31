@@ -18,7 +18,7 @@ const Home = () => {
   const [thirdSection, setThirdSection] = useState([]);
   const [fourthSection, setFourthSection] = useState([]);
   const [fifthSection, seFifthSection] = useState([]);
-  const year = new Date().getFullYear();
+  // const year = new Date().getFullYear();
 
   useEffect(() => {
     const filteredFirstSection = products.filter(
@@ -46,6 +46,7 @@ const Home = () => {
     setFourthSection(filteredFourthSection);
     seFifthSection(filteredFifthSection)
   }, [products]);
+
 
   return (
     <Helmet title={'Home'}>

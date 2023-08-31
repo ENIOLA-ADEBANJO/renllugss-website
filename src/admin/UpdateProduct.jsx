@@ -11,7 +11,7 @@ import '../styles/update-product.css'
 const UpdateProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [productData, setProductData] = useState({});
+  const [setProductData] = useState({});
   const [enterTitle, setEnterTitle] = useState('');
   const [enterShortDesc, setEnterShortDesc] = useState('');
   const [enterDescription, setEnterDescription] = useState('');
@@ -40,7 +40,7 @@ const UpdateProduct = () => {
       }
     };
     fetchProductData();
-  }, [id]);
+  }, [id, setProductData]);
 
   const updateProduct = async (e) => {
     e.preventDefault();
